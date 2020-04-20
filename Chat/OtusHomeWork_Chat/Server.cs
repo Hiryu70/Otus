@@ -70,6 +70,8 @@ namespace Otus.Chat.Server
 		/// <param name="id">Идентификатор отправителя</param>
 		private void BroadcastMessage(string text, string id)
 		{
+			Console.WriteLine(text);
+
 			var message = new Message
 			{
 				Text = text,
@@ -94,7 +96,6 @@ namespace Otus.Chat.Server
 		{
 			var client = (ClientHandler) sender;
 			var message = $"{client.UserName} вошел в чат";
-			Console.WriteLine(message);
 
 			BroadcastMessage(message, client.Id);
 		}
@@ -108,7 +109,6 @@ namespace Otus.Chat.Server
 		{
 			var client = (ClientHandler)sender;
 			var message = $"{client.UserName}: {e.Message.Text}";
-			Console.WriteLine(message);
 
 			BroadcastMessage(message, client.Id);
 		}
@@ -125,7 +125,6 @@ namespace Otus.Chat.Server
 
 			_clients.Remove(client);
 
-			Console.WriteLine(message);
 			BroadcastMessage(message, client.Id);
 		}
 	}
